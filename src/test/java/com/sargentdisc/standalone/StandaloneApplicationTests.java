@@ -1,16 +1,32 @@
 package com.sargentdisc.standalone;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.support.SpringBootServletInitializer;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
+import org.springframework.web.client.RestTemplate;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
-public class StandaloneApplicationTests {
+@SpringBootApplication
+@EnableAutoConfiguration
+@Profile("test")
+public class StandaloneApplicationTests extends SpringBootServletInitializer {
 
-	@Test
-	public void contextLoads() {
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+		return application.sources(StandaloneApplicationTests.class);
 	}
+
+	public static void main(String[] args) {
+		SpringApplication.run(StandaloneApplicationTests.class, args);
+	}
+
+	@Bean
+	public RestTemplate restTemplate() {
+		return new RestTemplate();
+	}
+
 
 }

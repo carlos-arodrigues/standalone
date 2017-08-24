@@ -13,6 +13,7 @@
 ## Deployment
 
 * Run as Java Application the class StandaloneApplication
+	- http://localhost:8081/standalone/readfile
 * Or run the jar generated on target folder
 
 ## Built With
